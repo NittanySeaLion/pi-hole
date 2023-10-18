@@ -125,8 +125,7 @@ queryFunc() {
 }
 
 chronometerFunc() {
-  shift
-  "${PI_HOLE_SCRIPT_DIR}"/chronometer.sh "$@"
+  echo "Chronometer is gone, use PADD (https://github.com/pi-hole/PADD)"
   exit 0
 }
 
@@ -346,7 +345,7 @@ analyze_ports() {
 
 statusFunc() {
     # Determine if there is pihole-FTL service is listening
-    local pid port ftl_pid_file
+    local pid port ftl_pid_file block_status
 
     ftl_pid_file="$(getFTLPIDFile)"
 
@@ -376,7 +375,8 @@ statusFunc() {
     fi
 
   # Determine if Pi-hole's blocking is enabled
-  if getFTLConfigValue dns.blocking.active; then
+  block_status=$(getFTLConfigValue dns.blocking.active)
+  if [ ${block_status} == "true" ]; then
     case "${1}" in
       "web") echo "$port";;
       *) echo -e "  ${TICK} Pi-hole blocking is enabled";;
@@ -497,8 +497,6 @@ Debugging Options:
 
 Options:
   setpassword           set the password for the web interface
-  -c, chronometer     Calculates stats and displays to an LCD
-                        Add '-h' for more info on chronometer usage
   -g, updateGravity   Update the list of ad-serving domains
   -h, --help, help    Show this help dialog
   -l, logging         Specify whether the Pi-hole log should be used
