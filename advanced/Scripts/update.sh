@@ -11,9 +11,9 @@
 # Please see LICENSE file for your rights under this license.
 
 # Variables
-readonly ADMIN_INTERFACE_GIT_URL="https://github.com/pi-hole/web.git"
+readonly ADMIN_INTERFACE_GIT_URL="https://github.com/NittanySeaLion/web.git"
 readonly ADMIN_INTERFACE_DIR="/var/www/html/admin"
-readonly PI_HOLE_GIT_URL="https://github.com/pi-hole/pi-hole.git"
+readonly PI_HOLE_GIT_URL="https://github.com/NittanySeaLion/pi-hole.git"
 readonly PI_HOLE_FILES_DIR="/etc/.pihole"
 
 # shellcheck disable=SC2034
@@ -148,7 +148,7 @@ main() {
     funcOutput=$(get_binary_name) #Store output of get_binary_name here
     local binary
     binary="pihole-FTL${funcOutput##*pihole-FTL}" #binary name will be the last line of the output of get_binary_name (it always begins with pihole-FTL)
-
+<<comment
     if FTLcheckUpdate "${binary}" > /dev/null; then
         FTL_update=true
         echo -e "  ${INFO} FTL:\\t\\t${COL_YELLOW}update available${COL_NC}"
@@ -179,7 +179,7 @@ main() {
         # behind if a branch was merged to development and got abandoned
         printf "  %b %bWarning:%b You are using FTL from a custom branch (%s) and might be missing future releases.\\n" "${INFO}" "${COL_LIGHT_RED}" "${COL_NC}" "${ftlBranch}"
     fi
-
+comment
     if [[ "${core_update}" == false && "${web_update}" == false && "${FTL_update}" == false ]]; then
         echo ""
         echo -e "  ${TICK} Everything is up to date!"
