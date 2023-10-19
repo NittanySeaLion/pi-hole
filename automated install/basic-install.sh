@@ -2273,7 +2273,7 @@ FTLinstall() {
         printf "  %b Error: URL %s/%s not found%b\\n" "${COL_LIGHT_RED}" "${url}" "${binary}" "${COL_NC}"
         return 1
     fi
-    comment
+comment
 }
 
 
