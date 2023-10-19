@@ -2204,7 +2204,6 @@ clone_or_update_repos() {
 }
 
 
-:<<'comment'
 # Download FTL binary to random temp directory and install FTL binary
 # Disable directive for SC2120 a value _can_ be passed to this function, but it is passed from an external script that sources this one
 # shellcheck disable=SC2120
@@ -2228,6 +2227,7 @@ FTLinstall() {
     local binary
     binary="${1}"
 
+:<<'comment'
     # Determine which version of FTL to download
     if [[ "${ftlBranch}" == "master" ]];then
         url="https://github.com/pi-hole/ftl/releases/latest/download"
@@ -2273,8 +2273,9 @@ FTLinstall() {
         printf "  %b Error: URL %s/%s not found%b\\n" "${COL_LIGHT_RED}" "${url}" "${binary}" "${COL_NC}"
         return 1
     fi
+    comment
 }
-comment
+
 
 disable_dnsmasq() {
     # dnsmasq can now be stopped and disabled if it exists
