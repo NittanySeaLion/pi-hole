@@ -2203,6 +2203,7 @@ clone_or_update_repos() {
     fi
 }
 
+<<comment
 # Download FTL binary to random temp directory and install FTL binary
 # Disable directive for SC2120 a value _can_ be passed to this function, but it is passed from an external script that sources this one
 # shellcheck disable=SC2120
@@ -2272,6 +2273,7 @@ FTLinstall() {
         return 1
     fi
 }
+comment
 
 disable_dnsmasq() {
     # dnsmasq can now be stopped and disabled if it exists
@@ -2385,6 +2387,7 @@ get_binary_name() {
     echo ${l_binary}
 }
 
+<<comment
 FTLcheckUpdate() {
     #In the next section we check to see if FTL is already installed (in case of pihole -r).
     #If the installed version matches the latest version, then check the installed sha1sum of the binary vs the remote sha1sum. If they do not match, then download
@@ -2485,6 +2488,8 @@ FTLdetect() {
         FTLinstall "${1}" || return 1
     fi
 }
+
+comment
 
 make_temporary_log() {
     # Create a random temporary file for the log
