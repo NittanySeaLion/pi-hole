@@ -2203,7 +2203,8 @@ clone_or_update_repos() {
     fi
 }
 
-<<comment
+
+:<<'comment'
 # Download FTL binary to random temp directory and install FTL binary
 # Disable directive for SC2120 a value _can_ be passed to this function, but it is passed from an external script that sources this one
 # shellcheck disable=SC2120
@@ -2387,7 +2388,7 @@ get_binary_name() {
     echo ${l_binary}
 }
 
-<<comment
+:<<'comment'
 FTLcheckUpdate() {
     #In the next section we check to see if FTL is already installed (in case of pihole -r).
     #If the installed version matches the latest version, then check the installed sha1sum of the binary vs the remote sha1sum. If they do not match, then download
