@@ -39,7 +39,8 @@ GitCheckUpdateAvail() {
     directory="${1}"
     curdir=$PWD
     cd "${directory}" || return
-
+return 0
+:<<'comment'
     # Fetch latest changes in this repo
     git fetch --quiet origin
 
@@ -92,6 +93,7 @@ GitCheckUpdateAvail() {
         # branch that exists only locally)
         return 1
     fi
+comment
 }
 
 main() {
