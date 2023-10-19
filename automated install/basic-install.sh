@@ -2665,11 +2665,13 @@ main() {
     binary="pihole-FTL${funcOutput##*pihole-FTL}" #binary name will be the last line of the output of get_binary_name (it always begins with pihole-FTL)
     local theRest
     theRest="${funcOutput%pihole-FTL*}" # Print the rest of get_binary_name's output to display (cut out from first instance of "pihole-FTL")
+   
+:<<'comment'
     if ! FTLdetect "${binary}" "${theRest}"; then
         printf "  %b FTL Engine not installed\\n" "${CROSS}"
         exit 1
     fi
-
+comment
     # Install and log everything to a file
     installPihole | tee -a /proc/$$/fd/3
 
